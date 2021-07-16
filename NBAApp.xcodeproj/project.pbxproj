@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E11288E26A0C7EC006C08E5 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E11288D26A0C7EC006C08E5 /* Game.swift */; };
+		0E11289026A0C7FA006C08E5 /* ServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E11288F26A0C7FA006C08E5 /* ServiceAPI.swift */; };
+		0E11289226A0C80A006C08E5 /* GameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E11289126A0C80A006C08E5 /* GameVM.swift */; };
+		0E11289526A0C93E006C08E5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E11289426A0C93E006C08E5 /* Extensions.swift */; };
 		0E30FEE62694897D00ACAE94 /* NBAAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E30FEE52694897D00ACAE94 /* NBAAppApp.swift */; };
 		0E30FEE82694897D00ACAE94 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E30FEE72694897D00ACAE94 /* ContentView.swift */; };
 		0E30FEEA2694897F00ACAE94 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E30FEE92694897F00ACAE94 /* Assets.xcassets */; };
@@ -16,6 +20,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0E11288D26A0C7EC006C08E5 /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
+		0E11288F26A0C7FA006C08E5 /* ServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceAPI.swift; sourceTree = "<group>"; };
+		0E11289126A0C80A006C08E5 /* GameVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameVM.swift; sourceTree = "<group>"; };
+		0E11289426A0C93E006C08E5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		0E30FEE22694897D00ACAE94 /* NBAApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NBAApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E30FEE52694897D00ACAE94 /* NBAAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NBAAppApp.swift; sourceTree = "<group>"; };
 		0E30FEE72694897D00ACAE94 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = "../New Group/ContentView.swift"; sourceTree = "<group>"; };
@@ -40,6 +48,7 @@
 		0E11288A26A02CEE006C08E5 /* ServiceAPI */ = {
 			isa = PBXGroup;
 			children = (
+				0E11288F26A0C7FA006C08E5 /* ServiceAPI.swift */,
 			);
 			path = ServiceAPI;
 			sourceTree = "<group>";
@@ -47,6 +56,7 @@
 		0E11288B26A02CF8006C08E5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0E11288D26A0C7EC006C08E5 /* Game.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -54,8 +64,17 @@
 		0E11288C26A02CFD006C08E5 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				0E11289126A0C80A006C08E5 /* GameVM.swift */,
 			);
 			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0E11289326A0C92E006C08E5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				0E11289426A0C93E006C08E5 /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		0E30FED92694897D00ACAE94 = {
@@ -77,6 +96,7 @@
 		0E30FEE42694897D00ACAE94 /* NBAApp */ = {
 			isa = PBXGroup;
 			children = (
+				0E11289326A0C92E006C08E5 /* Extensions */,
 				0E11288C26A02CFD006C08E5 /* ViewModel */,
 				0E11288B26A02CF8006C08E5 /* Model */,
 				0E11288A26A02CEE006C08E5 /* ServiceAPI */,
@@ -177,8 +197,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				0EC96E18269DCD71006F16A9 /* HomeView.swift in Sources */,
+				0E11288E26A0C7EC006C08E5 /* Game.swift in Sources */,
 				0E30FEE82694897D00ACAE94 /* ContentView.swift in Sources */,
+				0E11289526A0C93E006C08E5 /* Extensions.swift in Sources */,
 				0E30FEE62694897D00ACAE94 /* NBAAppApp.swift in Sources */,
+				0E11289026A0C7FA006C08E5 /* ServiceAPI.swift in Sources */,
+				0E11289226A0C80A006C08E5 /* GameVM.swift in Sources */,
 				0E8A4316269EF224006EDC9A /* CustomTabBarView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
