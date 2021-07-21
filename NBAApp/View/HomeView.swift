@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     
+    @StateObject private var gameVM = GameVM()
+    
     @State private var pickedDate = 0
     @State var selectedTab: String = "sportscourt"
     
@@ -21,7 +23,7 @@ struct HomeView: View {
         
         VStack {
             TabView {
-                LandingView(pickedDate: $pickedDate)
+                LandingView(pickedDate: $pickedDate, gameVM: gameVM)
                     .tag("sportscourt")
                 
                 Color.pink
@@ -36,6 +38,22 @@ struct HomeView: View {
             CustomTabBarView(selectedTab: $selectedTab)
                 .frame(height: 40)
         }
+        .onAppear(perform: {
+            self.getPickedDate()
+        })
+    }
+    
+    private func getPickedDate() {
+        switch pickedDate {
+        case 0:
+            self.gameVM.getGamesByDate(Date().dayBefore.getFormattedDate())
+        case 1:
+            self.gameVM.getGamesByDate(Date().getFormattedDate())
+        case 2:
+            self.gameVM.getGamesByDate(Date().dayAfter.getFormattedDate())
+        default:
+            self.gameVM.getGamesByDate(Date().getFormattedDate())
+        }
     }
 }
 
@@ -48,6 +66,7 @@ struct HomeView_Previews: PreviewProvider {
 struct LandingView: View {
     
     @Binding public var pickedDate: Int
+    @StateObject public var gameVM = GameVM()
     
     var body: some View {
         ZStack {
@@ -83,21 +102,27 @@ struct LandingView: View {
                 .padding()
                 
                 VStack(spacing: 15) {
-                    BoardView()
-                    
-                    BoardView()
-                }
 
-                
+                    ForEach(gameVM.games ?? [], id: \.id) { game in
+                        BoardView(homeTeam: game.homeTeam, awayTeam: game.awayTeam)
+                    }
+                }
 
                 Spacer()
                 
+            }
+            .onAppear() {
+                print(gameVM.games)
             }
         }
     }
 }
 
 struct BoardView: View {
+    
+    @State public var homeTeam: String
+    @State public var awayTeam: String
+    
     var body: some View {
         VStack {
             HStack(spacing: 50) {

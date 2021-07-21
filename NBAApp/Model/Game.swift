@@ -11,6 +11,7 @@ struct Game: Identifiable, Codable {
     let id = UUID()
     let homeTeam, awayTeam: String
     let awayTeamScore, homeTeamScore: Int?
+    let status: String?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -18,5 +19,6 @@ struct Game: Identifiable, Codable {
         case homeTeam = "HomeTeam"
         case awayTeamScore = "AwayTeamScore"
         case homeTeamScore = "HomeTeamScore"
+        case status = "Status"
     }
 }

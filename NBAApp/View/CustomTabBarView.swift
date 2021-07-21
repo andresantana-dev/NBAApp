@@ -9,20 +9,17 @@ import SwiftUI
 
 struct CustomTabBarView: View {
     @Binding var selectedTab: String
-    
-    //Animation Namespace for sliding effect
-    @Namespace var animation
-    
+
     var body: some View {
         
         HStack(spacing: 0) {
             
             //Tab Bar Button
-            TabBarButton(animation: animation, image: "sportscourt", title: "Scores", selectedTab: $selectedTab)
+            TabBarButton(image: "sportscourt", title: "Scores", selectedTab: $selectedTab)
             
-            TabBarButton(animation: animation, image: "list.number", title: "Standings", selectedTab: $selectedTab)
+            TabBarButton(image: "list.number", title: "Standings", selectedTab: $selectedTab)
             
-            TabBarButton(animation: animation, image: "gearshape", title: "Settings", selectedTab: $selectedTab)
+            TabBarButton(image: "gearshape", title: "Settings", selectedTab: $selectedTab)
         }
         .padding(.top)
         .background(Color.white)
@@ -44,7 +41,6 @@ extension View {
 
 struct TabBarButton: View {
     
-    var animation: Namespace.ID
     var image: String
     var title: String
     @Binding var selectedTab: String
@@ -60,7 +56,6 @@ struct TabBarButton: View {
             VStack(spacing: 5) {
                 Image(systemName: image)
                     .resizable()
-                    //Since its asset image
                     .aspectRatio(contentMode: .fit)
                     .frame(width: 28, height: 28)
                     .foregroundColor(selectedTab == image ? Color.blue : Color.gray.opacity(0.5))
