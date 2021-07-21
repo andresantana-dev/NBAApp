@@ -38,22 +38,6 @@ struct HomeView: View {
             CustomTabBarView(selectedTab: $selectedTab)
                 .frame(height: 40)
         }
-        .onAppear(perform: {
-            self.getPickedDate()
-        })
-    }
-    
-    private func getPickedDate() {
-        switch pickedDate {
-        case 0:
-            self.gameVM.getGamesByDate(Date().dayBefore.getFormattedDate())
-        case 1:
-            self.gameVM.getGamesByDate(Date().getFormattedDate())
-        case 2:
-            self.gameVM.getGamesByDate(Date().dayAfter.getFormattedDate())
-        default:
-            self.gameVM.getGamesByDate(Date().getFormattedDate())
-        }
     }
 }
 
@@ -100,20 +84,40 @@ struct LandingView: View {
                 .colorMultiply(.red)
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
+                .onReceive([pickedDate].publisher.first()) { (value) in
+                    getPickedDate(value: value)
+                }
                 
                 VStack(spacing: 15) {
-
-                    ForEach(gameVM.games ?? [], id: \.id) { game in
-                        BoardView(homeTeam: game.homeTeam, awayTeam: game.awayTeam)
+                    
+                    if gameVM.games?.count == 0 {
+                        Text("No games scheduled for this day.")
+                            .foregroundColor(.black)
+                            .multilineTextAlignment(.center)
+                            .font(.title3)
+                    } else {
+                        ForEach(gameVM.games ?? [], id: \.id) { game in
+                            BoardView(homeTeam: game.homeTeam, awayTeam: game.awayTeam, date: "2021-07-20", status: game.status ?? "")
+                        }
                     }
                 }
 
                 Spacer()
                 
             }
-            .onAppear() {
-                print(gameVM.games)
-            }
+        }
+    }
+    
+    private func getPickedDate(value: Int) {
+        switch value {
+        case 0:
+            self.gameVM.getGamesByDate(Date().dayBefore.getFormattedDate())
+        case 1:
+            self.gameVM.getGamesByDate(Date().getFormattedDate())
+        case 2:
+            self.gameVM.getGamesByDate(Date().dayAfter.getFormattedDate())
+        default:
+            self.gameVM.getGamesByDate(Date().getFormattedDate())
         }
     }
 }
@@ -122,30 +126,32 @@ struct BoardView: View {
     
     @State public var homeTeam: String
     @State public var awayTeam: String
+    @State public var date: String
+    @State public var status: String
     
     var body: some View {
         VStack {
             HStack(spacing: 50) {
-                Image("logo")
+                Image(TeamLogo(homeTeam).logo)
                     .resizable()
-                    .frame(width: 50, height: 80)
-                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 80, height: 80)
+                    .aspectRatio(contentMode: .fill)
                 
                 Text("VS")
                     .bold()
                 
-                Image("logo")
+                Image(TeamLogo(awayTeam).logo)
                     .resizable()
-                    .frame(width: 50, height: 80)
-                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 80, height: 80)
+                    .aspectRatio(contentMode: .fill)
             }
             .padding()
             
             HStack(spacing: 140) {
-                Text("LAL")
+                Text(homeTeam)
                     .bold()
                 
-                Text("PHQ")
+                Text(awayTeam)
                     .bold()
                 
             }
@@ -153,8 +159,13 @@ struct BoardView: View {
             .padding()
             .offset(y: -15)
             
-            Text("Scheduled @ 10:30 PM")
-                .bold()
+            VStack {
+                Text(status)
+                    .bold()
+                
+                Text(date)
+            }
+            .offset(y: -10)
         }
         .padding()
         .frame(width: 390, height: 220)
