@@ -11,7 +11,7 @@ struct HomeView: View {
     
     @StateObject private var gameVM = GameVM()
     
-    @State private var pickedDate = 0
+    @State private var pickedDate = 1
     @State var selectedTab: String = "sportscourt"
     
     init() {
@@ -57,6 +57,7 @@ struct LandingView: View {
     
     @Binding public var pickedDate: Int
     @StateObject public var gameVM = GameVM()
+    @State private var date: String = ""
     
     var body: some View {
         ZStack {
@@ -91,7 +92,7 @@ struct LandingView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
                 .onReceive([pickedDate].publisher.first()) { (value) in
-                    getPickedDate(value: value)
+                    date = getPickedDate(value: value)
                 }
                 
                 VStack(spacing: 15) {
@@ -103,7 +104,7 @@ struct LandingView: View {
                             .font(.title3)
                     } else {
                         ForEach(gameVM.games ?? [], id: \.id) { game in
-                            BoardView(homeTeam: game.homeTeam, awayTeam: game.awayTeam, date: "2021-07-20", status: game.status ?? "")
+                            BoardView(homeTeam: game.homeTeam, awayTeam: game.awayTeam, date: date, status: game.status ?? "")
                         }
                     }
                 }
@@ -114,16 +115,20 @@ struct LandingView: View {
         }
     }
     
-    private func getPickedDate(value: Int) {
+    private func getPickedDate(value: Int) -> String {
         switch value {
         case 0:
             self.gameVM.getGamesByDate(Date().dayBefore.getFormattedDate())
+            return Date().dayBefore.getFormattedDate()
         case 1:
             self.gameVM.getGamesByDate(Date().getFormattedDate())
+            return Date().getFormattedDate()
         case 2:
             self.gameVM.getGamesByDate(Date().dayAfter.getFormattedDate())
+            return Date().dayAfter.getFormattedDate()
         default:
             self.gameVM.getGamesByDate(Date().getFormattedDate())
+            return Date().getFormattedDate()
         }
     }
 }

@@ -10,7 +10,9 @@ import SwiftUI
 struct StandingsView: View {
     
     @StateObject private var gameVM = GameVM()
+    @State private var teams: [Standing]? = []
     @State private var pickedConference = 0
+    @State private var index: Int = 0
     
     var body: some View {
         ZStack {
@@ -43,7 +45,7 @@ struct StandingsView: View {
                 .pickerStyle(SegmentedPickerStyle())
                 .padding()
                 .onReceive([pickedConference].publisher.first()) { (value) in
-                    
+                    getPickedConference(value: value)
                 }
                 
                 HStack(spacing: 20) {
@@ -65,12 +67,8 @@ struct StandingsView: View {
                 
                 ScrollView(.vertical, showsIndicators: false, content: {
                     VStack(spacing: 10) {
-//                        ForEach(gameVM.easternTeams ?? [], id: \.id) { team in
-//                            TeamView(index: 1, key: team.key, name: team.name, wins: String(team.wins), losses: String(team.losses))
-//                        }
-                        
-                        ForEach(Array(zip(gameVM.easternTeams?.indices, gameVM.easternTeams ?? [] )), id: \.0) { index, team in
-                            TeamView(index: index, key: team.key, name: team.name, wins: String(team.wins), losses: String(team.losses))
+                        ForEach(teams ?? [], id: \.id) { team in
+                            TeamView(index: incrementIndex(), key: team.key, name: team.name, wins: String(team.wins), losses: String(team.losses))
                         }
                     }
                 })
@@ -79,6 +77,22 @@ struct StandingsView: View {
                 gameVM.getStandings()
             })
         }
+    }
+    
+    private func getPickedConference(value: Int) {
+        switch value {
+        case 0:
+            self.teams = self.gameVM.easternTeams
+        case 1:
+            self.teams = self.gameVM.westernTeams
+        default:
+            self.teams = []
+        }
+    }
+    
+    private func incrementIndex() -> Int {
+        let position = self.index + 1
+        return position
     }
 }
 
