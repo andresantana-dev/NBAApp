@@ -78,7 +78,7 @@ struct LandingView: View {
                 }
                 .padding(.horizontal, 15)
                                 
-                Picker(selection: $pickedDate, label: Text("What is your favorite color?")) {
+                Picker(selection: $pickedDate, label: Text("Day")) {
                     Text("Yesterday")
                         .tag(0)
                     Text("Today")

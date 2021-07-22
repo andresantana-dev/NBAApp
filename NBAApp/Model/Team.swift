@@ -48,7 +48,7 @@ enum Team {
         switch self {
         case .atlanta: return "atlanta"
         case.bulls: return "bulls"
-        case .cavaliers: return "bulls"
+        case .cavaliers: return "cavaliers"
         case .celtics: return "celtics"
         case .clippers: return "clippers"
         case .dallas: return "dallas"
