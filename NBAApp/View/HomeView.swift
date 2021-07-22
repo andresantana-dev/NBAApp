@@ -15,30 +15,36 @@ struct HomeView: View {
     @State var selectedTab: String = "sportscourt"
     
     init() {
-        UITabBar.appearance().isHidden = true
         UINavigationBar.appearance().isHidden = true
     }
     
     var body: some View {
-        
-        VStack {
-            TabView {
-                LandingView(pickedDate: $pickedDate, gameVM: gameVM)
-                    .tag("sportscourt")
-                
-                Color.pink
-                    .tag("list.number")
-                
-                Color.yellow
-                    .tag("gearshape")
-                
-            }
+        TabView {
+            LandingView(pickedDate: $pickedDate, gameVM: gameVM)
+                .tag("sportscourt")
+                .tabItem {
+                    Image(systemName: "sportscourt")
+                    Text("Scores")
+                }
             
+            StandingsView()
+                .tag("list.number")
+                .tabItem {
+                    Image(systemName: "list.number")
+                    Text("Standings")
+                }
             
-            CustomTabBarView(selectedTab: $selectedTab)
-                .frame(height: 40)
+            SettingsView()
+                .tag("gearshape")
+                .tabItem {
+                    Image(systemName: "gearshape")
+                    Text("Settings")
+                }
+            
         }
+        .accentColor(.blue)
     }
+    
 }
 
 struct HomeView_Previews: PreviewProvider {
@@ -132,7 +138,7 @@ struct BoardView: View {
     var body: some View {
         VStack {
             HStack(spacing: 50) {
-                Image(TeamLogo(homeTeam).logo)
+                Image(Team(homeTeam).logo)
                     .resizable()
                     .frame(width: 80, height: 80)
                     .aspectRatio(contentMode: .fill)
@@ -140,7 +146,7 @@ struct BoardView: View {
                 Text("VS")
                     .bold()
                 
-                Image(TeamLogo(awayTeam).logo)
+                Image(Team(awayTeam).logo)
                     .resizable()
                     .frame(width: 80, height: 80)
                     .aspectRatio(contentMode: .fill)
