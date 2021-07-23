@@ -12,7 +12,6 @@ struct StandingsView: View {
     @StateObject private var gameVM = GameVM()
     @State private var teams: [Standing]? = []
     @State private var pickedConference = 0
-    @State private var index: Int = 0
     
     var body: some View {
         ZStack {
@@ -68,7 +67,8 @@ struct StandingsView: View {
                 ScrollView(.vertical, showsIndicators: false, content: {
                     VStack(spacing: 10) {
                         ForEach(teams ?? [], id: \.id) { team in
-                            TeamView(index: incrementIndex(), key: team.key, name: team.name, wins: String(team.wins), losses: String(team.losses))
+                            
+                            TeamView(index: 1, key: team.key, name: team.name, wins: String(team.wins), losses: String(team.losses))
                         }
                     }
                 })
@@ -88,11 +88,6 @@ struct StandingsView: View {
         default:
             self.teams = []
         }
-    }
-    
-    private func incrementIndex() -> Int {
-        let position = self.index + 1
-        return position
     }
 }
 
@@ -114,15 +109,19 @@ struct TeamView: View {
     var body: some View {
         VStack {
             HStack(spacing: 20) {
-                Text(String(index))
+//                Text(String(index))
+                
+                Text("")
+
+                
                 Image(Team.init(key).logo)
                     .resizable()
                     .frame(width: 30, height: 30)
+                
                 Text(name)
                 
                 Spacer()
                 
-    
                 if favoriteTeam == name {
                     Image(systemName: "star.fill")
                         .resizable()
