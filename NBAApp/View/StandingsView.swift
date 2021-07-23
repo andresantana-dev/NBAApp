@@ -109,6 +109,7 @@ struct TeamView: View {
     @State public var name: String
     @State public var wins: String
     @State public var losses: String
+    @AppStorage("favoriteTeam") var favoriteTeam = ""
     
     var body: some View {
         VStack {
@@ -120,6 +121,15 @@ struct TeamView: View {
                 Text(name)
                 
                 Spacer()
+                
+    
+                if favoriteTeam == name {
+                    Image(systemName: "star.fill")
+                        .resizable()
+                        .frame(width: 20, height: 20)
+                        .foregroundColor(.yellow)
+                        .offset(x: -20)
+                }
                 
                 Text("\(wins) - \(losses)")
                 
