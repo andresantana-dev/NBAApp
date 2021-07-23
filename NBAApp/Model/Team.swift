@@ -40,6 +40,7 @@ enum Team {
         case "MEM": self = .memphis
         case "SA": self = .spurs
         case "HOU": self = .houston
+        case "NO": self = .pelicans
         default: self = .none
         }
     }
