@@ -61,7 +61,7 @@ struct LandingView: View {
     
     var body: some View {
         ZStack {
-            Color.init(UIColor(red: 0.93, green: 0.95, blue: 0.96, alpha: 1.00))
+            Color.init(AppColor.backgroundColor)
                 .edgesIgnoringSafeArea(.all)
             VStack {
                 HStack {

@@ -17,6 +17,7 @@
 		0E30FEED2694897F00ACAE94 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E30FEEC2694897F00ACAE94 /* Preview Assets.xcassets */; };
 		0E8451B126A9AE970029E27B /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8451B026A9AE970029E27B /* SettingsView.swift */; };
 		0E8451B526A9B0100029E27B /* Standing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E8451B426A9B0100029E27B /* Standing.swift */; };
+		0EA4E86426AD9E2900CD18F6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA4E86326AD9E2900CD18F6 /* Utils.swift */; };
 		0EC96E18269DCD71006F16A9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EC96E17269DCD71006F16A9 /* HomeView.swift */; };
 		0EE44EFA26A8AC3000F66B43 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE44EF926A8AC3000F66B43 /* Team.swift */; };
 		0EE44EFC26A8AC9300F66B43 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE44EFB26A8AC9300F66B43 /* StandingsView.swift */; };
@@ -35,6 +36,7 @@
 		0E30FEEE2694897F00ACAE94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E8451B026A9AE970029E27B /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		0E8451B426A9B0100029E27B /* Standing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Standing.swift; sourceTree = "<group>"; };
+		0EA4E86326AD9E2900CD18F6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		0EC96E17269DCD71006F16A9 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		0EE44EF926A8AC3000F66B43 /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
 		0EE44EFB26A8AC9300F66B43 /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		0E30FEE42694897D00ACAE94 /* NBAApp */ = {
 			isa = PBXGroup;
 			children = (
+				0EA4E86226AD9E1A00CD18F6 /* Utils */,
 				0E11289326A0C92E006C08E5 /* Extensions */,
 				0E11288C26A02CFD006C08E5 /* ViewModel */,
 				0E11288B26A02CF8006C08E5 /* Model */,
@@ -123,6 +126,14 @@
 				0E30FEEC2694897F00ACAE94 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		0EA4E86226AD9E1A00CD18F6 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				0EA4E86326AD9E2900CD18F6 /* Utils.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		0EC96E16269DCD5D006F16A9 /* View */ = {
@@ -216,6 +227,7 @@
 				0E11289026A0C7FA006C08E5 /* ServiceAPI.swift in Sources */,
 				0E11289226A0C80A006C08E5 /* GameVM.swift in Sources */,
 				0E8451B126A9AE970029E27B /* SettingsView.swift in Sources */,
+				0EA4E86426AD9E2900CD18F6 /* Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

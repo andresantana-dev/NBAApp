@@ -31,14 +31,14 @@ class ServiceAPI {
     
     static let shared = ServiceAPI()
     
-    private let apiKey = ""
+    private let apiKey = "e6496d3bff164fa6b02ff24019d72f93"
     private let apiURL = "https://fly.sportsdata.io/v3/nba/scores/json/"
     private var dataTask: URLSessionDataTask?
     
     // MARK: - Methods
     
     func getGames(date: String, completion: @escaping(Result<[Game], ServiceError>) -> Void) {
-        guard let url = URL(string: "\(apiURL)/GamesByDate/\(date)?key=e6496d3bff164fa6b02ff24019d72f93") else {
+        guard let url = URL(string: "\(apiURL)/GamesByDate/\(date)?key=\(apiKey)") else {
             self.executeHandlerInMainThread(with: .failure(.invalidEndpoint), completion: completion)
             return
         }
@@ -74,7 +74,7 @@ class ServiceAPI {
     }
     
     func getStandings(completion: @escaping(Result<[Standing], ServiceError>) -> Void) {
-        guard let url = URL(string: "\(apiURL)/Standings/2021?key=e6496d3bff164fa6b02ff24019d72f93") else {
+        guard let url = URL(string: "\(apiURL)/Standings/2021?key=\(apiKey)") else {
             self.executeHandlerInMainThread(with: .failure(.invalidEndpoint), completion: completion)
             return
         }
