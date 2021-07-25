@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Standing: Identifiable, Codable {
+struct Standing: Identifiable, Codable, Hashable {
     let id = UUID()
     let key: String
     let name: String

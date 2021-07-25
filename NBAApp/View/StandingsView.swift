@@ -66,9 +66,10 @@ struct StandingsView: View {
                 
                 ScrollView(.vertical, showsIndicators: false, content: {
                     VStack(spacing: 10) {
-                        ForEach(teams ?? [], id: \.id) { team in
-                            
-                            TeamView(index: 1, key: team.key, name: team.name, wins: String(team.wins), losses: String(team.losses))
+                        if let teams = teams {
+                            ForEach(Array(teams.enumerated()), id: \.1) { index, team in
+                                TeamView(index: index + 1, key: team.key, name: team.name, wins: String(team.wins), losses: String(team.losses))
+                            }
                         }
                     }
                 })
@@ -109,7 +110,7 @@ struct TeamView: View {
     var body: some View {
         VStack {
             HStack(spacing: 20) {
-//                Text(String(index))
+                Text(String(index))
                 
                 Text("")
 
